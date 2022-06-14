@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+  <title>EditPerson</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1 th:text="${msg}"></h1>
+  <form action="/update" method="POST" th:object="${person}">
+    <div>
+      <label for="name">名前</label>
+      <input type="text" name="name" th:value="*{name}">
+    </div>
+    <div>
+      <label for="age">年齢</label>
+      <input type="number" name="age" th:value="*{age}">
+    </div>
+    <div>
+      <label for="email">メール</label>
+      <input type="email" name="mail" th:value="*{mail}">
+    </div>
+    <input type="hidden" name="id" th:value="*{id}">
+    <button type="submit">送信</button>
+  </form>
+
+  <form action="/delete" method="POST" th:object="${person}">
+    <input type="hidden" name="id" th:value="*{id}">
+    <button type="submit">削除</button>
+  </form>
+</body>
+</html>

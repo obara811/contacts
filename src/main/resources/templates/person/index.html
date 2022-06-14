@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+  <title>ContactList</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1 th:text="${msg}"></h1>
+  <form action="/create" method="POST" th:object="${person}">
+    <div>
+      <label for="name">名前</label>
+      <input type="text" name="name" th:value="*{name}">
+      <div th:errors ="*{name}"></div>
+    </div>
+    <div>
+      <label for="age">年齢</label>
+      <input type="number" name="age" th:value="*{age}">
+      <div th:errors ="*{age}"></div>
+    </div>
+    <div>
+      <label for="email">メール</label>
+      <input type="email" name="mail" th:value="*{mail}">
+      <div th:errors ="*{mail}"></div>
+    </div>
+    <button type="submit">送信</button>
+  </form>
+
+  <table>
+      <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>年齢</th>
+        <th>メール</th>
+      </tr>
+      <tr th:each="person: ${people}">
+        <td th:text="${person.id}"></td>
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.age}"></td>
+        <td th:text="${person.mail}"></td>
+        <td><a th:href="@{'/edit/'} + ${person.id}">編集</a></a></td>
+      </tr>
+  </table>
+</body>
+</html>
